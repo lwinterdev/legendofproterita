@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://theme_test.tres" type="Theme" id=1]
+[ext_resource path="res://SpaceshipMenu.gd" type="Script" id=2]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="SpaceshipMenu" type="Control" parent="."]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 166.0
+margin_top = 106.0
+margin_right = -160.0
+margin_bottom = -139.0
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SpaceshipMenu"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="SpaceshipStartButton" type="Button" parent="SpaceshipMenu/VBoxContainer"]
+margin_right = 183.0
+margin_bottom = 25.0
+text = "Start Spaceship"
+
+[node name="SpaceshipCancelButton" type="Button" parent="SpaceshipMenu/VBoxContainer"]
+margin_top = 29.0
+margin_right = 183.0
+margin_bottom = 54.0
+text = "Cancel"
+
+[connection signal="pressed" from="SpaceshipMenu/VBoxContainer/SpaceshipStartButton" to="SpaceshipMenu" method="_on_SpaceshipStartButton_pressed"]
+[connection signal="pressed" from="SpaceshipMenu/VBoxContainer/SpaceshipCancelButton" to="SpaceshipMenu" method="_on_SpaceshipCancelButton_pressed"]

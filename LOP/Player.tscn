@@ -1,0 +1,431 @@
+[gd_scene load_steps=49 format=2]
+
+[ext_resource path="res://Sprites/uwu.png" type="Texture" id=1]
+[ext_resource path="res://Player.gd" type="Script" id=2]
+[ext_resource path="res://cursor_direction.tscn" type="PackedScene" id=3]
+[ext_resource path="res://PlayerGUI.tscn" type="PackedScene" id=4]
+[ext_resource path="res://PauseMenu.tscn" type="PackedScene" id=5]
+[ext_resource path="res://FlashShader.shader" type="Shader" id=6]
+[ext_resource path="res://PlayerRaycasts.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Camera2D.gd" type="Script" id=8]
+[ext_resource path="res://item1.png" type="Texture" id=9]
+[ext_resource path="res://CurrentWeaponIcon.gd" type="Script" id=10]
+[ext_resource path="res://PortalShader.tres" type="Shader" id=11]
+[ext_resource path="res://BWShader.shader" type="Shader" id=12]
+[ext_resource path="res://Sprites/walk_test.png" type="Texture" id=13]
+[ext_resource path="res://Sprites/jump_test.png" type="Texture" id=14]
+[ext_resource path="res://Sprites/falling_test.png" type="Texture" id=15]
+[ext_resource path="res://Light2.png" type="Texture" id=42]
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 6 )
+shader_param/flash_color = Color( 1, 1, 1, 1 )
+shader_param/flash_modifier = 0.843
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = ExtResource( 6 )
+shader_param/flash_color = Color( 1, 1, 1, 1 )
+shader_param/flash_modifier = 0.0
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 14 )
+region = Rect2( 0, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 14 )
+region = Rect2( 16, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 14 )
+region = Rect2( 32, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 14 )
+region = Rect2( 48, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 14 )
+region = Rect2( 64, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 14 )
+region = Rect2( 80, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 14 )
+region = Rect2( 96, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 13 )
+region = Rect2( 0, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 13 )
+region = Rect2( 16, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 13 )
+region = Rect2( 32, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=14]
+atlas = ExtResource( 13 )
+region = Rect2( 48, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 13 )
+region = Rect2( 64, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 13 )
+region = Rect2( 80, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=17]
+atlas = ExtResource( 13 )
+region = Rect2( 96, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=18]
+atlas = ExtResource( 13 )
+region = Rect2( 112, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=19]
+atlas = ExtResource( 13 )
+region = Rect2( 128, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=20]
+atlas = ExtResource( 13 )
+region = Rect2( 144, 0, 16, 16 )
+
+[sub_resource type="SpriteFrames" id=21]
+animations = [ {
+"frames": [ SubResource( 3 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 1 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ) ],
+"loop": true,
+"name": "jump",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ) ],
+"loop": true,
+"name": "walk",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 15 ) ],
+"loop": true,
+"name": "fall",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=22]
+extents = Vector2( 4.738, 7.5 )
+
+[sub_resource type="RectangleShape2D" id=23]
+extents = Vector2( 8.40897, 7.5914 )
+
+[sub_resource type="ShaderMaterial" id=24]
+shader = ExtResource( 12 )
+
+[sub_resource type="Animation" id=25]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:material:shader_param/flash_modifier")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("PortalShaderSprite:material:shader_param/size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("PortalShaderSprite:material:render_priority")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("PortalShaderSprite:material:shader_param/width")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.328 ]
+}
+
+[sub_resource type="Animation" id=26]
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:material:shader_param/flash_modifier")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0, 0.0 ]
+}
+
+[sub_resource type="Animation" id=27]
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:material:shader_param/flash_modifier")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+
+[sub_resource type="Animation" id=28]
+tracks/0/type = "value"
+tracks/0/path = NodePath("PortalShaderSprite:material:shader_param/size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.2, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 2.006 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("PortalShaderSprite:material:shader_param/width")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.328 ]
+}
+
+[sub_resource type="Animation" id=29]
+tracks/0/type = "value"
+tracks/0/path = NodePath("PortalShaderSprite:material:shader_param/size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.2, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 2.006 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("PortalShaderSprite:material:shader_param/width")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.328 ]
+}
+
+[sub_resource type="OpenSimplexNoise" id=30]
+seed = 205
+octaves = 1
+persistence = 1.0
+lacunarity = 0.1
+
+[sub_resource type="NoiseTexture" id=31]
+noise = SubResource( 30 )
+
+[sub_resource type="ShaderMaterial" id=32]
+shader = ExtResource( 11 )
+shader_param/size = 0.0
+shader_param/width = 1.328
+shader_param/screen_width = 512.0
+shader_param/screen_height = 300.0
+shader_param/brighter_color = Color( 0.956863, 0.294118, 0.588235, 1 )
+shader_param/middle_color = Color( 1, 0.560784, 0, 1 )
+shader_param/darker_color = Color( 0.768627, 0.345098, 0.196078, 1 )
+shader_param/spread = 0.935
+shader_param/player_position = Vector2( 0.5, 0.507 )
+shader_param/pixel_amount = 81
+shader_param/noise_tex = SubResource( 31 )
+
+[node name="Player" type="KinematicBody2D" groups=["minimap_objects", "player"]]
+material = SubResource( 1 )
+collision_layer = 2147483649
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_vertical_guides_": [ -701.279 ]
+}
+
+[node name="Sprite" type="AnimatedSprite" parent="."]
+material = SubResource( 2 )
+position = Vector2( 0.24688, 0.2464 )
+frames = SubResource( 21 )
+animation = "fall"
+speed_scale = 2.0
+playing = true
+centered = false
+offset = Vector2( -8.24688, -8.2464 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -1 )
+shape = SubResource( 22 )
+
+[node name="ShootTimer" type="Timer" parent="."]
+process_mode = 0
+wait_time = 0.25
+
+[node name="Position2D" type="Position2D" parent="."]
+
+[node name="cursor_direction" parent="." instance=ExtResource( 3 )]
+
+[node name="Sprite2" parent="cursor_direction" index="0"]
+position = Vector2( 11.5085, 0.30747 )
+scale = Vector2( 0.123223, 0.670792 )
+
+[node name="RayCast2D" parent="cursor_direction" index="2"]
+collision_mask = 8
+
+[node name="CoyoteTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[node name="JumpBuffer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PlayerGUI" parent="CanvasLayer" instance=ExtResource( 4 )]
+
+[node name="PlayerHealthbar" parent="CanvasLayer/PlayerGUI" index="0"]
+margin_bottom = 25.0
+
+[node name="CurrentWeaponIcon" parent="CanvasLayer/PlayerGUI/CurrentWeaponSprite" index="0"]
+texture = null
+script = ExtResource( 10 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+zoom = Vector2( 0.5, 0.5 )
+limit_smoothed = true
+smoothing_enabled = true
+smoothing_speed = 100.0
+script = ExtResource( 8 )
+
+[node name="ShiftTween" type="Tween" parent="Camera2D"]
+
+[node name="Hurtbox" type="Area2D" parent="."]
+visible = false
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2( 0.300575, -0.385627 )
+shape = SubResource( 23 )
+
+[node name="CanvasLayer2" parent="." instance=ExtResource( 5 )]
+
+[node name="ColorRect" parent="CanvasLayer2" index="0"]
+material = SubResource( 24 )
+mouse_filter = 2
+color = Color( 1, 1, 1, 0 )
+
+[node name="VBoxContainer" parent="CanvasLayer2/PauseMenu/CenterContainer" index="0"]
+margin_top = 96.0
+margin_bottom = 204.0
+
+[node name="PauseMenuResumeButton" parent="CanvasLayer2/PauseMenu/CenterContainer/VBoxContainer" index="0"]
+margin_bottom = 24.0
+
+[node name="PauseMenuSaveGameButton" parent="CanvasLayer2/PauseMenu/CenterContainer/VBoxContainer" index="1"]
+margin_top = 28.0
+margin_bottom = 52.0
+
+[node name="PauseMenuOptionsButton" parent="CanvasLayer2/PauseMenu/CenterContainer/VBoxContainer" index="2"]
+margin_top = 56.0
+margin_bottom = 80.0
+
+[node name="PauseMenuMainMenuButton" parent="CanvasLayer2/PauseMenu/CenterContainer/VBoxContainer" index="3"]
+margin_top = 84.0
+margin_bottom = 108.0
+
+[node name="PlayerSoundPlayer" type="AudioStreamPlayer2D" parent="."]
+
+[node name="PlayerRaycasts" parent="." instance=ExtResource( 7 )]
+visible = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+playback_speed = 2.0
+anims/RESET = SubResource( 25 )
+anims/damage_flash = SubResource( 26 )
+anims/flash_reset = SubResource( 27 )
+anims/portal_opening = SubResource( 28 )
+"anims/portal_opening (copy)" = SubResource( 29 )
+
+[node name="PortalShaderSprite" type="Sprite" parent="."]
+material = SubResource( 32 )
+position = Vector2( -84.455, 46.0799 )
+scale = Vector2( 16.0137, 9.39878 )
+z_index = 100
+z_as_relative = false
+texture = ExtResource( 9 )
+
+[node name="Light2D" type="Light2D" parent="."]
+texture = ExtResource( 42 )
+texture_scale = 7.69
+energy = 0.33
+shadow_enabled = true
+shadow_gradient_length = 3.0
+shadow_filter = 1
+shadow_filter_smooth = 25.8
+
+[connection signal="animation_finished" from="Sprite" to="." method="_on_Sprite_animation_finished"]
+[connection signal="timeout" from="ShootTimer" to="." method="_on_ShootTimer_timeout"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+
+[editable path="cursor_direction"]
+[editable path="CanvasLayer/PlayerGUI"]
+[editable path="CanvasLayer2"]
+[editable path="PlayerRaycasts"]

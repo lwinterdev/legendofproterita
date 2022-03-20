@@ -1,0 +1,68 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://theme_test.tres" type="Theme" id=1]
+[ext_resource path="res://ReturnToMainMenuConfirmationMenu.gd" type="Script" id=2]
+
+[node name="ReturnToMainMenuConfirmationMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.47451, 0.443137, 0.443137, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="ColorRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/CenterContainer"]
+margin_left = 182.0
+margin_top = 106.0
+margin_right = 330.0
+margin_bottom = 194.0
+
+[node name="Label" type="Label" parent="ColorRect/CenterContainer/VBoxContainer"]
+margin_right = 148.0
+margin_bottom = 15.0
+text = "Return to Main Menu ?"
+align = 1
+valign = 1
+
+[node name="HBoxContainer" type="VBoxContainer" parent="ColorRect/CenterContainer/VBoxContainer"]
+margin_top = 19.0
+margin_right = 148.0
+margin_bottom = 88.0
+mouse_filter = 0
+custom_constants/separation = 19
+
+[node name="QuitYesButton" type="Button" parent="ColorRect/CenterContainer/VBoxContainer/HBoxContainer"]
+margin_right = 148.0
+margin_bottom = 25.0
+focus_neighbour_left = NodePath("../QuitNoButton")
+focus_neighbour_top = NodePath("../QuitNoButton")
+focus_neighbour_right = NodePath("../QuitNoButton")
+focus_neighbour_bottom = NodePath("../QuitNoButton")
+focus_next = NodePath("../QuitNoButton")
+focus_previous = NodePath("../QuitNoButton")
+text = "Yes"
+
+[node name="QuitNoButton" type="Button" parent="ColorRect/CenterContainer/VBoxContainer/HBoxContainer"]
+margin_top = 44.0
+margin_right = 148.0
+margin_bottom = 69.0
+text = "No"
+[connection signal="mouse_entered" from="ColorRect/CenterContainer/VBoxContainer/HBoxContainer/QuitYesButton" to="." method="_on_QuitYesButton_mouse_entered"]
+[connection signal="pressed" from="ColorRect/CenterContainer/VBoxContainer/HBoxContainer/QuitYesButton" to="." method="_on_QuitYesButton_pressed"]
+[connection signal="pressed" from="ColorRect/CenterContainer/VBoxContainer/HBoxContainer/QuitNoButton" to="." method="_on_QuitNoButton_pressed"]

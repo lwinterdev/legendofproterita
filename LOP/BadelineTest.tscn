@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://BadelineWalk.tres" type="SpriteFrames" id=1]
+
+[node name="BadelineTest" type="AnimatedSprite"]
+frames = ExtResource( 1 )
+animation = "Walk"
+frame = 8
+speed_scale = 2.0
+playing = true
+centered = false

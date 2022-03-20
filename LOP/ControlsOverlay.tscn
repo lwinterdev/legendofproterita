@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://theme_test.tres" type="Theme" id=1]
+[ext_resource path="res://ControlsOverlay.gd" type="Script" id=2]
+[ext_resource path="res://Sprites/ControlsOverlay/xbox_abutton.png" type="Texture" id=3]
+
+[node name="InteractControlPanel" type="Panel"]
+margin_left = 10.4529
+margin_top = 4.70031
+margin_right = 58.4529
+margin_bottom = 52.7003
+rect_min_size = Vector2( 8, 8 )
+rect_scale = Vector2( 0.75, 0.75 )
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ControlOverlaySprit" type="Sprite" parent="."]
+position = Vector2( 25.3776, 24.4411 )
+scale = Vector2( 4, 4 )
+texture = ExtResource( 3 )
+
+[node name="ControlLabel" type="Label" parent="ControlOverlaySprit"]
+margin_left = -4.0
+margin_top = -7.0
+margin_right = 4.0
+margin_bottom = 11.0
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}

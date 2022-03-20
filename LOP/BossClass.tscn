@@ -1,0 +1,256 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://EnemyClass.tscn" type="PackedScene" id=1]
+[ext_resource path="res://FlashShader.shader" type="Shader" id=2]
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 2 )
+shader_param/flash_color = Color( 1, 0.964706, 0.964706, 1 )
+shader_param/flash_modifier = 0.0
+
+[sub_resource type="GDScript" id=2]
+script/source = "extends KinematicBody2D
+
+export (int) var speed = 5
+
+export (int) var base_speed = 5
+export (int) var jump_speed = 5
+export (int) var gravity = 32
+export (int) var max_gravity = 32
+var Floor = Vector2(0,-1)
+export (int) var melee_damage := 10
+
+
+export (float, 0, 1.0) var friction = 0.25
+export (float, 0, 1.0) var acceleration = 0.1
+
+export (float , 0, 100) var health = 100
+
+export var key = \"key1\"
+
+var velocity = Vector2.ZERO
+var is_jumping := false
+var is_falling := false
+
+var react_time := 10
+var moving_left:= true
+
+var next_direction = 0
+var next_direction_time = 0  
+
+var direction :int = 0
+
+var target_distance:int = 50
+
+onready var AnimSprite = $AnimatedSprite
+onready var AnimPlayer = $AnimationPlayer
+#load death animation
+var death_animation = preload(\"res://BossClassDeath.tscn\")
+
+var target = null
+onready var Look =$WallLook
+onready var LookDirection = $EnemyLookDirection
+onready var AggroDirection = $EnemyAggroDirection
+var bullet = preload(\"res://EnemyBullet.tscn\")
+var can_shoot:bool = true
+onready var ShootTimer = $ShootTimer
+
+#sound variables
+onready var SoundPlayer = $EnemySoundPlayer
+var bullet_hit_sound_wall = preload(\"res://Sounds/mixkit-fast-blow-2144.wav\")
+var bullet_hit_sound_player = preload(\"res://Sounds/mixkit-small-hit-in-a-game-2072.wav\")
+
+var KeyPopup = preload(\"res://KeyPopup.tscn\")
+
+var state = \"idle\"
+
+var level
+
+func _physics_process(delta):
+	
+	if !is_on_floor():
+		velocity.y += gravity
+	else:
+		velocity.y = 0
+	
+	if not AggroDirection.is_colliding():
+		velocity.x = speed * direction
+	if AggroDirection.is_colliding():
+		speed = 0
+	
+	velocity = move_and_slide(velocity,Floor)
+	
+	if target:
+		LookDirection.look_at(target.position)
+		AggroDirection.look_at(target.position)
+		if state == \"chase\":
+			
+			AnimSprite.play(\"default\")
+			
+			if target.position.x > position.x + target_distance and next_direction != 1 : #turn to right side 
+				
+				set_direction(1)
+				AnimSprite.flip_h = true
+				Look.position.x = 12
+				
+				
+			elif target.position.x < position.x - target_distance  and next_direction != -1: #turn to left side
+				
+				set_direction(-1)
+				AnimSprite.flip_h = false
+				Look.position.x = -12
+				
+			
+			elif target.position.x == position.x  and next_direction != 0:
+				
+				set_direction(0)
+				
+			if OS.get_ticks_msec() > next_direction_time:
+				direction = next_direction
+	
+			if can_shoot and not $EnemyLookDirection/RayCast2D.is_colliding():
+				var b = bullet.instance()
+				get_parent().add_child(b)
+				b.owned = self
+				b.transform =LookDirection.transform
+				b.position = $Position2D.global_position
+				ShootTimer.start()
+				can_shoot = false
+			
+			if state == \"idle\":
+				AnimSprite.stop()
+		
+	if health <= 0: 
+		death()
+		
+func set_direction(new_direction):
+	if next_direction != new_direction:
+		next_direction = new_direction
+		next_direction_time = OS.get_ticks_msec() + react_time
+
+func got_hit(recieved_damage):
+	health -= recieved_damage
+	$FlashTimer.start()
+	AnimPlayer.play(\"damage_flash\")
+
+func play_bullet_sound_wall():
+	SoundPlayer.stream = bullet_hit_sound_wall
+	SoundPlayer.play()
+
+func play_bullet_sound_hit_player():
+	SoundPlayer.stream = bullet_hit_sound_player
+	SoundPlayer.play()
+
+func death():
+	var d = death_animation.instance()
+	d.global_position =  global_position
+	get_parent().add_child(d)
+	for room_changer in get_tree().get_nodes_in_group(\"room_changer\"):
+			room_changer.boss_beaten = true
+	GlobalRoomHandler.key1 = true
+#	var p = KeyPopup.instance()
+#	p.global_position = self.global_position
+#	get_parent().add_child(p)
+	queue_free()
+
+
+func _on_AggroArea_body_entered(body):
+	if body.is_in_group(\"player\"):
+		state = \"chase\"
+		target = body
+		speed = base_speed
+
+
+
+func _on_AggroArea_body_exited(body):
+	if body.is_in_group(\"player\"):
+		state = \"idle\"
+		speed = 0
+	pass # Replace with function body.
+
+
+
+func _on_Hitbox_body_entered(body):
+	if body.is_in_group(\"player\") :
+		body.got_hit(melee_damage)
+		speed = 0
+		$MeleeTimer.start()
+	pass # Replace with function body.
+
+
+func _on_MeleeTimer_timeout():
+	speed = base_speed
+	$MeleeTimer.stop()
+	pass # Replace with function body.
+
+
+func _on_FlashTimer_timeout():
+	AnimPlayer.play(\"RESET\")
+	pass # Replace with function body.
+
+
+func _on_ShootTimer_timeout():
+	can_shoot = true
+	pass # Replace with function body.
+"
+
+[sub_resource type="Animation" id=3]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:material:shader_param/flash_modifier")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_local_to_scene = true
+resource_name = "damage_flash"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:material:shader_param/flash_modifier")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0 ]
+}
+
+[node name="BossClass" instance=ExtResource( 1 )]
+material = SubResource( 1 )
+script = SubResource( 2 )
+speed = 200
+base_speed = 200
+jump_speed = -75
+acceleration = 0.5
+
+[node name="CollisionShape2D" parent="." index="0"]
+position = Vector2( -0.488901, 3.9375 )
+
+[node name="WallLook" parent="." index="1"]
+collide_with_areas = true
+
+[node name="EnemyAggroDirection" parent="." index="11"]
+scale = Vector2( 1, 1 )
+
+[node name="AnimatedSprite" parent="." index="12"]
+use_parent_material = true
+frame = 7
+playing = true
+flip_h = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="13"]
+playback_speed = 62.0
+anims/RESET = SubResource( 3 )
+anims/damage_flash = SubResource( 4 )
+
+[editable path="EnemyLookDirection"]

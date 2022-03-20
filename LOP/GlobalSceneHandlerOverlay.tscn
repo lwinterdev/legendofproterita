@@ -1,0 +1,49 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://GlobalSceneHandler.gd" type="Script" id=1]
+[ext_resource path="res://theme_test.tres" type="Theme" id=2]
+[ext_resource path="res://hair00.png" type="Texture" id=3]
+
+[node name="GlobalSceneHandlerOverlay" type="Control"]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+theme = ExtResource( 2 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.87451, 0.737255, 0.737255, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="ColorRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/CenterContainer"]
+margin_left = 156.0
+margin_top = 138.0
+margin_right = 356.0
+margin_bottom = 162.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LoadingProgress" type="ProgressBar" parent="ColorRect/CenterContainer/VBoxContainer"]
+margin_right = 200.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 200, 0 )
+
+[node name="LoadingCircle" type="Sprite" parent="ColorRect/CenterContainer"]
+position = Vector2( 252.699, 195.956 )
+texture = ExtResource( 3 )

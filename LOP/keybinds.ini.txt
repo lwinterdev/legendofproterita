@@ -1,0 +1,5 @@
+[keybinds]
+
+move_right=68
+move_left=65
+jump=32

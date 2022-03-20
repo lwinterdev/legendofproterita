@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/mixkit-game-gun-shot-1662.mp3-0e27649cb1b46d18b3580f1579ac3164.mp3str"
+
+[deps]
+
+source_file="res://Sounds/mixkit-game-gun-shot-1662.mp3"
+dest_files=[ "res://.import/mixkit-game-gun-shot-1662.mp3-0e27649cb1b46d18b3580f1579ac3164.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

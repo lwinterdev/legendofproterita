@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=2]
+
+[sub_resource type="Gradient" id=2]
+offsets = PoolRealArray( 0.173585, 0.573585, 0.762264, 0.773585, 0.969811, 1 )
+colors = PoolColorArray( 0.32626, 0.32626, 0.32626, 1, 0, 0, 0, 1, 0.906277, 0.906277, 0.906277, 1, 0.764555, 0.764555, 0.764555, 1, 0.958491, 0.958491, 0.958491, 1, 1, 0.960938, 0, 1 )
+
+[sub_resource type="GradientTexture" id=3]
+gradient = SubResource( 2 )
+
+[sub_resource type="ParticlesMaterial" id=1]
+trail_color_modifier = SubResource( 3 )
+emission_shape = 2
+emission_box_extents = Vector3( 4, 4, 1 )
+flag_disable_z = true
+gravity = Vector3( -98, 0, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+damping = 16.13
+damping_random = 1.0
+color = Color( 1, 0, 0, 1 )
+
+[node name="SpaceshipBeamShader" type="Particles2D"]
+process_material = SubResource( 1 )

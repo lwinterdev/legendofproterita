@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="ParticlesMaterial" id=1]
+lifetime_randomness = 0.22
+trail_divisor = 548
+flag_disable_z = true
+gravity = Vector3( 0, 98, 0 )
+angular_velocity = -20.72
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+
+[node name="HoneyParticles" type="Particles2D"]
+modulate = Color( 1, 0.74902, 0, 1 )
+amount = 12
+lifetime = 2.19
+preprocess = 0.88
+speed_scale = 0.91
+randomness = 1.0
+process_material = SubResource( 1 )

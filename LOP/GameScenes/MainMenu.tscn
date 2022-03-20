@@ -1,0 +1,90 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://space_background.png" type="Texture" id=1]
+[ext_resource path="res://GameScenes/MainMenu.gd" type="Script" id=4]
+[ext_resource path="res://GameScenes/MainMenuStartButton.gd" type="Script" id=5]
+[ext_resource path="res://Sounds/BackgroundMusic/celeste_inspired_soundtrack.wav" type="AudioStream" id=6]
+[ext_resource path="res://theme_test.tres" type="Theme" id=7]
+
+[node name="MainMenu" type="Control"]
+pause_mode = 1
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 1
+theme = ExtResource( 7 )
+script = ExtResource( 4 )
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 312.0
+theme = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+margin_top = 65.0
+margin_right = 200.0
+margin_bottom = 235.0
+rect_min_size = Vector2( 200, 100 )
+
+[node name="MainMenuStartButton" type="Button" parent="CenterContainer/VBoxContainer"]
+margin_right = 200.0
+margin_bottom = 25.0
+text = "new_game"
+script = ExtResource( 5 )
+
+[node name="MainMenuContinueButton" type="Button" parent="CenterContainer/VBoxContainer"]
+margin_top = 29.0
+margin_right = 200.0
+margin_bottom = 54.0
+text = "continue"
+script = ExtResource( 5 )
+
+[node name="MainMenuLoadButton" type="Button" parent="CenterContainer/VBoxContainer"]
+margin_top = 58.0
+margin_right = 200.0
+margin_bottom = 83.0
+text = "load_game"
+
+[node name="MainMenuOptionsButton" type="Button" parent="CenterContainer/VBoxContainer"]
+margin_top = 87.0
+margin_right = 200.0
+margin_bottom = 112.0
+text = "options"
+
+[node name="MainMenuLicenseButton" type="Button" parent="CenterContainer/VBoxContainer"]
+margin_top = 116.0
+margin_right = 200.0
+margin_bottom = 141.0
+text = "license"
+
+[node name="MainMenuQuitButton" type="Button" parent="CenterContainer/VBoxContainer"]
+margin_top = 145.0
+margin_right = 200.0
+margin_bottom = 170.0
+text = "quit"
+
+[node name="Sprite" type="Sprite" parent="CenterContainer"]
+position = Vector2( -312, 0 )
+scale = Vector2( 2, 2 )
+z_index = -10
+texture = ExtResource( 1 )
+centered = false
+
+[node name="MainMenuSoundPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="MainMenuMusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 256.728, 148.225 )
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/MainMenuStartButton" to="." method="_on_MainMenuStartButton_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/MainMenuContinueButton" to="." method="_on_MainMenuContinueButton_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/MainMenuLoadButton" to="." method="_on_MainMenuLoadButton_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/MainMenuOptionsButton" to="." method="_on_MainMenuOptionsButton_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/MainMenuLicenseButton" to="." method="_on_MainMenuLicenseButton_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/MainMenuQuitButton" to="." method="_on_MainMenuQuitButton_pressed"]
+[connection signal="finished" from="MainMenuMusicPlayer" to="." method="_on_MainMenuMusicPlayer_finished"]

@@ -1,0 +1,13 @@
+[gd_scene format=2]
+
+[node name="MandelForestMapTest" type="Node2D"]
+
+[node name="Forest" type="ColorRect" parent="."]
+margin_left = 77.0
+margin_top = 108.0
+margin_right = 477.0
+margin_bottom = 148.0
+color = Color( 0.129412, 0.505882, 0.188235, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

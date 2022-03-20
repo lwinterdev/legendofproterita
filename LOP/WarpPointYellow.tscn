@@ -1,0 +1,155 @@
+[gd_scene load_steps=29 format=2]
+
+[ext_resource path="res://Sprites/warp_point.png" type="Texture" id=1]
+[ext_resource path="res://Sprites/talk_bubble.png" type="Texture" id=2]
+[ext_resource path="res://James.gd" type="Script" id=3]
+[ext_resource path="res://outline.shader" type="Shader" id=4]
+[ext_resource path="res://Light2.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/warp_point_closing.png" type="Texture" id=6]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 3.89783, 7.97039 )
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = ExtResource( 4 )
+shader_param/outline_color = Color( 0.396078, 0.2, 0.2, 1 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 6 )
+region = Rect2( 0, 0, 16, 32 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 6 )
+region = Rect2( 16, 0, 16, 32 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 6 )
+region = Rect2( 32, 0, 16, 32 )
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 6 )
+region = Rect2( 48, 0, 16, 32 )
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 6 )
+region = Rect2( 64, 0, 16, 32 )
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 6 )
+region = Rect2( 80, 0, 16, 32 )
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 6 )
+region = Rect2( 96, 0, 16, 32 )
+
+[sub_resource type="AtlasTexture" id=14]
+atlas = ExtResource( 6 )
+region = Rect2( 112, 0, 16, 32 )
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 6 )
+region = Rect2( 128, 0, 16, 32 )
+
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 6 )
+region = Rect2( 144, 0, 16, 32 )
+
+[sub_resource type="AtlasTexture" id=17]
+atlas = ExtResource( 6 )
+region = Rect2( 160, 0, 16, 32 )
+
+[sub_resource type="AtlasTexture" id=18]
+atlas = ExtResource( 6 )
+region = Rect2( 176, 0, 16, 32 )
+
+[sub_resource type="AtlasTexture" id=19]
+atlas = ExtResource( 6 )
+region = Rect2( 192, 0, 16, 32 )
+
+[sub_resource type="AtlasTexture" id=20]
+atlas = ExtResource( 6 )
+region = Rect2( 208, 0, 16, 32 )
+
+[sub_resource type="AtlasTexture" id=21]
+atlas = ExtResource( 6 )
+region = Rect2( 224, 0, 16, 32 )
+
+[sub_resource type="AtlasTexture" id=22]
+atlas = ExtResource( 6 )
+region = Rect2( 240, 0, 16, 32 )
+
+[sub_resource type="SpriteFrames" id=6]
+animations = [ {
+"frames": [ ExtResource( 1 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 22 ) ],
+"loop": true,
+"name": "closing",
+"speed": 5.0
+} ]
+
+[sub_resource type="CircleShape2D" id=3]
+radius = 16.9722
+
+[sub_resource type="ShaderMaterial" id=4]
+shader = ExtResource( 4 )
+shader_param/outline_color = Color( 1, 1, 1, 1 )
+
+[sub_resource type="Animation" id=5]
+resource_name = "blink"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:material:shader_param/outline_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0.956863, 0.87451, 0.87451, 1 ), Color( 0.396078, 0.2, 0.2, 1 ) ]
+}
+
+[node name="WarpPointYellow" type="StaticBody2D"]
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="Sprite" type="AnimatedSprite" parent="."]
+material = SubResource( 2 )
+frames = SubResource( 6 )
+animation = "closing"
+
+[node name="TalkArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TalkArea"]
+shape = SubResource( 3 )
+
+[node name="TalkBubble" type="Sprite" parent="."]
+material = SubResource( 4 )
+position = Vector2( 9, -12 )
+texture = ExtResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+playback_speed = 0.5
+anims/blink = SubResource( 5 )
+
+[node name="Light2D" type="Light2D" parent="."]
+visible = false
+position = Vector2( 0.0481294, -8.78978 )
+scale = Vector2( 0.372155, 0.264215 )
+texture = ExtResource( 5 )
+color = Color( 1, 0.913725, 0, 1 )
+
+[node name="TalkTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[connection signal="body_entered" from="TalkArea" to="." method="_on_TalkArea_body_entered"]
+[connection signal="body_exited" from="TalkArea" to="." method="_on_TalkArea_body_exited"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+[connection signal="timeout" from="TalkTimer" to="." method="_on_TalkTimer_timeout"]

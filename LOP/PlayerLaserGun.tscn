@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://weapon_sprite_laser.png" type="Texture" id=1]
+[ext_resource path="res://PlayerLaserGun.gd" type="Script" id=2]
+
+[node name="PlayerLaserGun" type="Sprite" groups=["player_weapon"]]
+position = Vector2( -7.25025, 0.484072 )
+texture = ExtResource( 1 )
+offset = Vector2( 7.25025, -0.484072 )
+flip_h = true
+script = ExtResource( 2 )

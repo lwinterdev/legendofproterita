@@ -1,0 +1,16 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+
+[deps]
+
+files=[ "res://OptionStuff/godot_lop_localization_table.en.translation", "res://OptionStuff/godot_lop_localization_table.de.translation" ]
+
+source_file="res://OptionStuff/godot_lop_localization_table.csv"
+dest_files=[ "res://OptionStuff/godot_lop_localization_table.en.translation", "res://OptionStuff/godot_lop_localization_table.de.translation" ]
+
+[params]
+
+compress=true
+delimiter=0

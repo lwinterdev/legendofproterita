@@ -1,0 +1,88 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://theme_test.tres" type="Theme" id=1]
+[ext_resource path="res://OptionsMenu.gd" type="Script" id=4]
+[ext_resource path="res://OptionsMenuGraphicsButton.gd" type="Script" id=5]
+
+[node name="OptionsMenu" type="Control"]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 1
+theme = ExtResource( 1 )
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.133333, 0.172549, 0.243137, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="ColorRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/CenterContainer"]
+margin_left = 142.0
+margin_top = 19.0
+margin_right = 369.0
+margin_bottom = 281.0
+rect_min_size = Vector2( 200, 0 )
+
+[node name="OptionsMenuGeneralButton" type="Button" parent="ColorRect/CenterContainer/VBoxContainer"]
+margin_right = 227.0
+margin_bottom = 34.0
+text = "general"
+script = ExtResource( 5 )
+
+[node name="OptionsMenuControlsButton" type="Button" parent="ColorRect/CenterContainer/VBoxContainer"]
+margin_top = 38.0
+margin_right = 227.0
+margin_bottom = 72.0
+text = "keyboard_controls"
+
+[node name="OptionsMenuControlsButtonGamepad" type="Button" parent="ColorRect/CenterContainer/VBoxContainer"]
+margin_top = 76.0
+margin_right = 227.0
+margin_bottom = 110.0
+text = "gamepad_controls"
+
+[node name="OptionsMenuBackButton2" type="Button" parent="ColorRect/CenterContainer/VBoxContainer"]
+margin_top = 114.0
+margin_right = 227.0
+margin_bottom = 148.0
+text = "audio"
+
+[node name="OptionsMenuBackButton3" type="Button" parent="ColorRect/CenterContainer/VBoxContainer"]
+margin_top = 152.0
+margin_right = 227.0
+margin_bottom = 186.0
+text = "visual"
+
+[node name="OptionsMenuAccesibilityButton" type="Button" parent="ColorRect/CenterContainer/VBoxContainer"]
+margin_top = 190.0
+margin_right = 227.0
+margin_bottom = 224.0
+text = "accessibility"
+
+[node name="OptionsMenuBackButton" type="Button" parent="ColorRect/CenterContainer/VBoxContainer"]
+margin_top = 228.0
+margin_right = 227.0
+margin_bottom = 262.0
+text = "back"
+
+[connection signal="pressed" from="ColorRect/CenterContainer/VBoxContainer/OptionsMenuGeneralButton" to="." method="_on_OptionsMenuGeneralButton_pressed"]
+[connection signal="pressed" from="ColorRect/CenterContainer/VBoxContainer/OptionsMenuControlsButton" to="." method="_on_OptionsMenuControlsButton_pressed"]
+[connection signal="pressed" from="ColorRect/CenterContainer/VBoxContainer/OptionsMenuControlsButtonGamepad" to="." method="_on_OptionsMenuControlsButtonGamepad_pressed"]
+[connection signal="pressed" from="ColorRect/CenterContainer/VBoxContainer/OptionsMenuBackButton2" to="." method="_on_OptionsMenuBackButton2_pressed"]
+[connection signal="pressed" from="ColorRect/CenterContainer/VBoxContainer/OptionsMenuBackButton3" to="." method="_on_OptionsMenuBackButton3_pressed"]
+[connection signal="pressed" from="ColorRect/CenterContainer/VBoxContainer/OptionsMenuAccesibilityButton" to="." method="_on_OptionsMenuAccesibilityButton_pressed"]
+[connection signal="pressed" from="ColorRect/CenterContainer/VBoxContainer/OptionsMenuBackButton" to="." method="_on_OptionsMenuBackButton_pressed"]

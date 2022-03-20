@@ -1,0 +1,72 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://PauseMenu.gd" type="Script" id=4]
+[ext_resource path="res://PauseMenuResumeButton.gd" type="Script" id=5]
+[ext_resource path="res://theme_test.tres" type="Theme" id=6]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.298039, 0.345098, 0.717647, 0.886275 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PauseMenu" type="Control" parent="."]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 1
+theme = ExtResource( 6 )
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="PauseMenu"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseMenu/CenterContainer"]
+margin_left = 156.0
+margin_top = 94.0
+margin_right = 356.0
+margin_bottom = 206.0
+rect_min_size = Vector2( 200, 0 )
+
+[node name="PauseMenuResumeButton" type="Button" parent="PauseMenu/CenterContainer/VBoxContainer"]
+margin_right = 200.0
+margin_bottom = 25.0
+text = "resume"
+script = ExtResource( 5 )
+
+[node name="PauseMenuSaveGameButton" type="Button" parent="PauseMenu/CenterContainer/VBoxContainer"]
+margin_top = 29.0
+margin_right = 200.0
+margin_bottom = 54.0
+text = "save"
+script = ExtResource( 5 )
+
+[node name="PauseMenuOptionsButton" type="Button" parent="PauseMenu/CenterContainer/VBoxContainer"]
+margin_top = 58.0
+margin_right = 200.0
+margin_bottom = 83.0
+text = "options"
+
+[node name="PauseMenuMainMenuButton" type="Button" parent="PauseMenu/CenterContainer/VBoxContainer"]
+margin_top = 87.0
+margin_right = 200.0
+margin_bottom = 112.0
+text = "main_menu"
+
+[node name="PauseMenuSoundPlayer" type="AudioStreamPlayer" parent="PauseMenu"]
+
+[connection signal="pressed" from="PauseMenu/CenterContainer/VBoxContainer/PauseMenuResumeButton" to="PauseMenu" method="_on_PauseMenuResumeButton_pressed"]
+[connection signal="pressed" from="PauseMenu/CenterContainer/VBoxContainer/PauseMenuSaveGameButton" to="PauseMenu" method="_on_PauseMenuSaveGameButton_pressed"]
+[connection signal="pressed" from="PauseMenu/CenterContainer/VBoxContainer/PauseMenuOptionsButton" to="PauseMenu" method="_on_PauseMenuOptionsButton_pressed"]
+[connection signal="pressed" from="PauseMenu/CenterContainer/VBoxContainer/PauseMenuMainMenuButton" to="PauseMenu" method="_on_PauseMenuMainMenuButton_pressed"]

@@ -1,0 +1,11 @@
+[gd_scene format=2]
+
+[node name="PlayerRaycasts" type="Node2D"]
+
+[node name="RcRight" type="RayCast2D" parent="."]
+enabled = true
+cast_to = Vector2( 50, 0 )
+
+[node name="RcLeft" type="RayCast2D" parent="."]
+enabled = true
+cast_to = Vector2( -50, 0 )

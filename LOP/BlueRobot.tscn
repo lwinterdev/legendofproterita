@@ -1,0 +1,87 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://blue_robot_sheet.png" type="Texture" id=1]
+[ext_resource path="res://FlashShader.shader" type="Shader" id=2]
+[ext_resource path="res://teal_turret_bullet.png" type="Texture" id=3]
+
+[sub_resource type="ShaderMaterial" id=14]
+shader = ExtResource( 2 )
+shader_param/flash_color = Color( 1, 1, 1, 1 )
+shader_param/flash_modifier = 0.05
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 1 )
+region = Rect2( 16, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=17]
+atlas = ExtResource( 1 )
+region = Rect2( 32, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=18]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 16, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=19]
+atlas = ExtResource( 1 )
+region = Rect2( 16, 16, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=20]
+atlas = ExtResource( 1 )
+region = Rect2( 32, 16, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=21]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 32, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=22]
+atlas = ExtResource( 1 )
+region = Rect2( 16, 32, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=23]
+atlas = ExtResource( 1 )
+region = Rect2( 32, 32, 16, 16 )
+
+[sub_resource type="SpriteFrames" id=24]
+animations = [ {
+"frames": [ SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 23 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=12]
+extents = Vector2( 4.1327, 3.99491 )
+
+[sub_resource type="Animation" id=13]
+resource_name = "damage_flash"
+
+[node name="BlueRobot" type="RigidBody2D" groups=["wall"]]
+material = SubResource( 14 )
+collision_layer = 7
+collision_mask = 7
+mode = 3
+mass = 143.34
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+use_parent_material = true
+frames = SubResource( 24 )
+frame = 3
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 12 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/damage_flash = SubResource( 13 )
+
+[node name="Light2D" type="Light2D" parent="."]
+visible = false
+position = Vector2( 0, -1 )
+texture = ExtResource( 3 )
+texture_scale = 2.29
+color = Color( 1, 0.0585938, 0.0585938, 1 )
+energy = 3.51

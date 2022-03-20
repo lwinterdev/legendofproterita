@@ -1,0 +1,143 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://theme_test.tres" type="Theme" id=1]
+[ext_resource path="res://title_font.tres" type="DynamicFont" id=2]
+[ext_resource path="res://StartScreen.gd" type="Script" id=3]
+[ext_resource path="res://cpu_test_bg2.png" type="Texture" id=4]
+[ext_resource path="res://PortalShader.tres" type="Shader" id=5]
+[ext_resource path="res://LIghtning.tscn" type="PackedScene" id=6]
+[ext_resource path="res://LightingShader.shader" type="Shader" id=7]
+
+[sub_resource type="OpenSimplexNoise" id=1]
+seed = 241
+period = 88.7
+
+[sub_resource type="NoiseTexture" id=2]
+noise = SubResource( 1 )
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = ExtResource( 5 )
+shader_param/size = 1.775
+shader_param/width = 4.972
+shader_param/screen_width = 600.0
+shader_param/screen_height = 400.0
+shader_param/brighter_color = Color( 0.552941, 0.513726, 0.356863, 1 )
+shader_param/middle_color = Color( 1, 0.56, 0, 1 )
+shader_param/darker_color = Color( 0.552941, 0.552941, 0.54902, 1 )
+shader_param/spread = 0.471
+shader_param/player_position = Vector2( 0.494, 0.514 )
+shader_param/pixel_amount = 40
+shader_param/noise_tex = SubResource( 2 )
+
+[sub_resource type="ShaderMaterial" id=4]
+resource_local_to_scene = true
+shader = ExtResource( 7 )
+shader_param/lightning_color = Color( 0.992157, 0.992157, 0.992157, 1 )
+shader_param/size = 0.098
+shader_param/width = 0.659
+shader_param/speed = 0.953
+shader_param/cycle = 0.656
+shader_param/ratio = 0.336
+shader_param/time_shift = null
+
+[sub_resource type="ShaderMaterial" id=5]
+resource_local_to_scene = true
+shader = ExtResource( 7 )
+shader_param/lightning_color = Color( 0.992157, 0.992157, 0.992157, 1 )
+shader_param/size = 0.098
+shader_param/width = 0.505
+shader_param/speed = 0.543
+shader_param/cycle = 1.541
+shader_param/ratio = 0.83
+shader_param/time_shift = 0.367
+
+[sub_resource type="ShaderMaterial" id=6]
+resource_local_to_scene = true
+shader = ExtResource( 7 )
+shader_param/lightning_color = Color( 0.992157, 0.992157, 0.992157, 1 )
+shader_param/size = 0.098
+shader_param/width = 0.402
+shader_param/speed = 0.294
+shader_param/cycle = 0.328
+shader_param/ratio = 0.19
+shader_param/time_shift = null
+
+[sub_resource type="ShaderMaterial" id=7]
+resource_local_to_scene = true
+shader = ExtResource( 7 )
+shader_param/lightning_color = Color( 0.992157, 0.992157, 0.992157, 1 )
+shader_param/size = 0.098
+shader_param/width = 0.402
+shader_param/speed = 0.294
+shader_param/cycle = 0.328
+shader_param/ratio = 0.19
+shader_param/time_shift = null
+
+[node name="StartScreen" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+script = ExtResource( 3 )
+
+[node name="Label" type="Label" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+custom_fonts/font = ExtResource( 2 )
+text = "Legend of Proterita"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchor_right = 1.0
+margin_left = 0.749146
+margin_top = 177.549
+margin_right = 0.749146
+margin_bottom = 259.549
+mouse_filter = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StartScreenContinueButton" type="Button" parent="CenterContainer"]
+margin_left = 206.0
+margin_top = 29.0
+margin_right = 306.0
+margin_bottom = 53.0
+rect_min_size = Vector2( 100, 0 )
+text = "Start "
+
+[node name="Sprite" type="Sprite" parent="."]
+modulate = Color( 0.439216, 0.137255, 0.129412, 1 )
+material = SubResource( 3 )
+position = Vector2( -19.3551, 0 )
+scale = Vector2( 2.15121, 2 )
+z_index = -1
+texture = ExtResource( 4 )
+centered = false
+
+[node name="LIghtning" parent="." instance=ExtResource( 6 )]
+material = SubResource( 4 )
+
+[node name="Sprite" parent="LIghtning" index="0"]
+use_parent_material = true
+
+[node name="LIghtning2" parent="." instance=ExtResource( 6 )]
+material = SubResource( 5 )
+position = Vector2( 448.762, 151.314 )
+
+[node name="LIghtning3" parent="." instance=ExtResource( 6 )]
+material = SubResource( 6 )
+position = Vector2( 345.312, 151.981 )
+
+[node name="LIghtning4" parent="." instance=ExtResource( 6 )]
+material = SubResource( 7 )
+position = Vector2( 152.428, 149.312 )
+
+[connection signal="pressed" from="CenterContainer/StartScreenContinueButton" to="." method="_on_StartScreenContinueButton_pressed"]
+
+[editable path="LIghtning"]
+[editable path="LIghtning2"]

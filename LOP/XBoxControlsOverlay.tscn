@@ -1,0 +1,226 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://theme_test.tres" type="Theme" id=1]
+[ext_resource path="res://ControlsOverlay.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Sprites/ControlsOverlay/xbox_bbutton.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/ControlsOverlay/xbox_righttrigger.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/ControlsOverlay/xbox_leftbumper.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/ControlsOverlay/xbox_rightstick2.png" type="Texture" id=6]
+[ext_resource path="res://Sprites/ControlsOverlay/xbox_rightbumper.png" type="Texture" id=7]
+[ext_resource path="res://Sprites/ControlsOverlay/xbox_dpad.png" type="Texture" id=8]
+[ext_resource path="res://Sprites/ControlsOverlay/xbox_ybutton.png" type="Texture" id=9]
+[ext_resource path="res://Sprites/ControlsOverlay/xbox_leftstick.png" type="Texture" id=10]
+[ext_resource path="res://Sprites/ControlsOverlay/xbox_lefttrigger.png" type="Texture" id=11]
+[ext_resource path="res://Sprites/ControlsOverlay/xbox_startbutton.png" type="Texture" id=12]
+[ext_resource path="res://Sprites/ControlsOverlay/xbox_xbutton.png" type="Texture" id=13]
+[ext_resource path="res://Sprites/ControlsOverlay/xbox_selectbutton.png" type="Texture" id=14]
+
+[node name="XBoxControlsOverlay" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Panel" type="Panel" parent="CenterContainer"]
+margin_left = 106.0
+margin_top = 49.0
+margin_right = 406.0
+margin_bottom = 249.0
+rect_min_size = Vector2( 300, 200 )
+theme = ExtResource( 1 )
+
+[node name="InteractControlPanel" parent="CenterContainer/Panel" instance=ExtResource( 2 )]
+margin_left = 201.0
+margin_top = 104.0
+margin_right = 249.0
+margin_bottom = 152.0
+xbox_button_type = "x"
+
+[node name="ControlOverlaySprit" parent="CenterContainer/Panel/InteractControlPanel" index="0"]
+texture = ExtResource( 13 )
+
+[node name="InteractControlPanel5" parent="CenterContainer/Panel" instance=ExtResource( 2 )]
+margin_left = 161.0
+margin_top = 103.0
+margin_right = 209.0
+margin_bottom = 151.0
+xbox_button_type = "start"
+
+[node name="ControlOverlaySprit" parent="CenterContainer/Panel/InteractControlPanel5" index="0"]
+texture = ExtResource( 12 )
+
+[node name="ControlLabel" parent="CenterContainer/Panel/InteractControlPanel5/ControlOverlaySprit" index="0"]
+margin_left = -3.67773
+margin_top = -6.11028
+margin_right = 4.32227
+margin_bottom = 11.8897
+
+[node name="InteractControlPanel6" parent="CenterContainer/Panel" instance=ExtResource( 2 )]
+margin_left = 102.0
+margin_top = 103.0
+margin_right = 150.0
+margin_bottom = 151.0
+xbox_button_type = "select"
+
+[node name="ControlOverlaySprit" parent="CenterContainer/Panel/InteractControlPanel6" index="0"]
+texture = ExtResource( 14 )
+
+[node name="ControlLabel" parent="CenterContainer/Panel/InteractControlPanel6/ControlOverlaySprit" index="0"]
+margin_left = -3.67773
+margin_top = -6.11028
+margin_right = 4.32227
+margin_bottom = 11.8897
+
+[node name="InteractControlPanel7" parent="CenterContainer/Panel" instance=ExtResource( 2 )]
+margin_left = 38.0
+margin_top = 103.0
+margin_right = 86.0
+margin_bottom = 151.0
+xbox_button_type = "leftstick"
+
+[node name="ControlOverlaySprit" parent="CenterContainer/Panel/InteractControlPanel7" index="0"]
+texture = ExtResource( 10 )
+
+[node name="InteractControlPanel8" parent="CenterContainer/Panel" instance=ExtResource( 2 )]
+margin_left = 70.0
+margin_top = 151.0
+margin_right = 118.0
+margin_bottom = 199.0
+xbox_button_type = "dpad"
+
+[node name="ControlOverlaySprit" parent="CenterContainer/Panel/InteractControlPanel8" index="0"]
+position = Vector2( 28.0442, 17.7746 )
+texture = ExtResource( 8 )
+
+[node name="InteractControlPanel13" parent="CenterContainer/Panel" instance=ExtResource( 2 )]
+margin_left = 173.0
+margin_top = 151.0
+margin_right = 221.0
+margin_bottom = 199.0
+xbox_button_type = "rightstick"
+
+[node name="ControlOverlaySprit" parent="CenterContainer/Panel/InteractControlPanel13" index="0"]
+position = Vector2( 22.6667, 21.3333 )
+texture = ExtResource( 6 )
+
+[node name="InteractControlPanel9" parent="CenterContainer/Panel" instance=ExtResource( 2 )]
+margin_left = 198.0
+margin_top = 47.0
+margin_right = 246.0
+margin_bottom = 95.0
+xbox_button_type = "rightbumper"
+
+[node name="ControlOverlaySprit" parent="CenterContainer/Panel/InteractControlPanel9" index="0"]
+position = Vector2( 85.3333, 40 )
+texture = ExtResource( 7 )
+
+[node name="ControlLabel" parent="CenterContainer/Panel/InteractControlPanel9/ControlOverlaySprit" index="0"]
+margin_left = -6.34439
+margin_top = -6.11028
+margin_right = 1.65561
+margin_bottom = 11.8897
+
+[node name="InteractControlPanel10" parent="CenterContainer/Panel" instance=ExtResource( 2 )]
+margin_left = 198.0
+margin_top = 8.0
+margin_right = 246.0
+margin_bottom = 56.0
+xbox_button_type = "righttrigger"
+
+[node name="ControlOverlaySprit" parent="CenterContainer/Panel/InteractControlPanel10" index="0"]
+position = Vector2( 72.0443, 23.1078 )
+texture = ExtResource( 4 )
+
+[node name="ControlLabel" parent="CenterContainer/Panel/InteractControlPanel10/ControlOverlaySprit" index="0"]
+margin_top = -6.66667
+margin_bottom = 11.3333
+
+[node name="InteractControlPanel11" parent="CenterContainer/Panel" instance=ExtResource( 2 )]
+margin_left = 38.0
+margin_top = 8.0
+margin_right = 86.0
+margin_bottom = 56.0
+xbox_button_type = "lefttrigger"
+
+[node name="ControlOverlaySprit" parent="CenterContainer/Panel/InteractControlPanel11" index="0"]
+position = Vector2( 36.0443, 24.4411 )
+texture = ExtResource( 11 )
+
+[node name="ControlLabel" parent="CenterContainer/Panel/InteractControlPanel11/ControlOverlaySprit" index="0"]
+margin_left = -1.66667
+margin_right = 6.33333
+
+[node name="InteractControlPanel12" parent="CenterContainer/Panel" instance=ExtResource( 2 )]
+margin_left = 38.0
+margin_top = 58.0
+margin_right = 86.0
+margin_bottom = 106.0
+xbox_button_type = "leftbumper"
+
+[node name="ControlOverlaySprit" parent="CenterContainer/Panel/InteractControlPanel12" index="0"]
+position = Vector2( 25.3775, 24.4411 )
+texture = ExtResource( 5 )
+
+[node name="InteractControlPanel2" parent="CenterContainer/Panel" instance=ExtResource( 2 )]
+margin_left = 254.0
+margin_top = 105.0
+margin_right = 302.0
+margin_bottom = 153.0
+xbox_button_type = "b"
+
+[node name="ControlOverlaySprit" parent="CenterContainer/Panel/InteractControlPanel2" index="0"]
+texture = ExtResource( 3 )
+
+[node name="InteractControlPanel3" parent="CenterContainer/Panel" instance=ExtResource( 2 )]
+margin_left = 228.0
+margin_top = 133.0
+margin_right = 276.0
+margin_bottom = 181.0
+
+[node name="InteractControlPanel4" parent="CenterContainer/Panel" instance=ExtResource( 2 )]
+margin_left = 228.0
+margin_top = 75.0
+margin_right = 276.0
+margin_bottom = 123.0
+xbox_button_type = "y"
+
+[node name="ControlOverlaySprit" parent="CenterContainer/Panel/InteractControlPanel4" index="0"]
+position = Vector2( 25.3776, 29.7744 )
+texture = ExtResource( 9 )
+
+[node name="ControlLabel" parent="CenterContainer/Panel/InteractControlPanel4/ControlOverlaySprit" index="0"]
+margin_left = -4.67773
+margin_top = -6.44362
+margin_right = 3.32227
+margin_bottom = 11.5564
+
+[editable path="CenterContainer/Panel/InteractControlPanel"]
+
+[editable path="CenterContainer/Panel/InteractControlPanel5"]
+
+[editable path="CenterContainer/Panel/InteractControlPanel6"]
+
+[editable path="CenterContainer/Panel/InteractControlPanel7"]
+
+[editable path="CenterContainer/Panel/InteractControlPanel8"]
+
+[editable path="CenterContainer/Panel/InteractControlPanel13"]
+
+[editable path="CenterContainer/Panel/InteractControlPanel9"]
+
+[editable path="CenterContainer/Panel/InteractControlPanel10"]
+
+[editable path="CenterContainer/Panel/InteractControlPanel11"]
+
+[editable path="CenterContainer/Panel/InteractControlPanel12"]
+
+[editable path="CenterContainer/Panel/InteractControlPanel2"]
+
+[editable path="CenterContainer/Panel/InteractControlPanel3"]
+
+[editable path="CenterContainer/Panel/InteractControlPanel4"]

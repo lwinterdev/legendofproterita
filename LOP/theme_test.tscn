@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://theme_test.tres" type="Theme" id=1]
+
+[node name="theme_test" type="Button"]
+margin_left = 0.707123
+margin_right = 151.707
+margin_bottom = 47.0
+theme = ExtResource( 1 )
+text = "UWU"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 72.832, 24.7487 )
+current = true
+zoom = Vector2( 0.5, 0.5 )

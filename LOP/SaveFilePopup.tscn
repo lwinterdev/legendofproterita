@@ -1,0 +1,54 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://theme_test.tres" type="Theme" id=1]
+[ext_resource path="res://SaveFilePopup.gd" type="Script" id=2]
+
+[node name="SaveFilePopup" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.317647, 0.266667, 0.266667, 1 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="ColorRect/VBoxContainer"]
+margin_right = 512.0
+margin_bottom = 15.0
+text = "Enter File Name:"
+
+[node name="FileNameEdit" type="LineEdit" parent="ColorRect/VBoxContainer"]
+margin_top = 19.0
+margin_right = 512.0
+margin_bottom = 33.0
+
+[node name="SaveFileButton" type="Button" parent="ColorRect/VBoxContainer"]
+margin_top = 37.0
+margin_right = 512.0
+margin_bottom = 62.0
+disabled = true
+text = "Save"
+
+[node name="CancelButton" type="Button" parent="ColorRect/VBoxContainer"]
+margin_top = 66.0
+margin_right = 512.0
+margin_bottom = 91.0
+text = "Cancel"
+
+[node name="Gui" type="CanvasLayer" parent="."]
+[connection signal="text_changed" from="ColorRect/VBoxContainer/FileNameEdit" to="." method="_on_FileNameEdit_text_changed"]
+[connection signal="text_entered" from="ColorRect/VBoxContainer/FileNameEdit" to="." method="_on_FileNameEdit_text_entered"]
+[connection signal="pressed" from="ColorRect/VBoxContainer/SaveFileButton" to="." method="_on_SaveFileButton_pressed"]
+[connection signal="pressed" from="ColorRect/VBoxContainer/CancelButton" to="." method="_on_CancelButton_pressed"]

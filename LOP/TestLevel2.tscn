@@ -1,0 +1,109 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://TestLevel.tres" type="TileSet" id=1]
+[ext_resource path="res://EnemyClass.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://SceneTransitionRect.tscn" type="PackedScene" id=4]
+[ext_resource path="res://TestLevel2.gd" type="Script" id=5]
+[ext_resource path="res://RoomChanger.tscn" type="PackedScene" id=6]
+[ext_resource path="res://MandelForestBee.tscn" type="PackedScene" id=7]
+[ext_resource path="res://FlashShader.shader" type="Shader" id=8]
+
+[sub_resource type="ShaderMaterial" id=1]
+resource_local_to_scene = true
+shader = ExtResource( 8 )
+shader_param/flash_color = Color( 1, 1, 1, 1 )
+shader_param/flash_modifier = 0.0
+
+[node name="TestLevel2" type="Node2D"]
+script = ExtResource( 5 )
+
+[node name="TileMap" type="TileMap" parent="." groups=[
+"wall",
+]]
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 32, 32 )
+collision_layer = 3
+collision_mask = 3
+format = 1
+tile_data = PoolIntArray( 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 6, 0, 0, 7, 0, 0, 8, 0, 0, 9, 0, 0, 10, 0, 0, 11, 0, 0, 12, 0, 0, 13, 0, 0, 14, 0, 0, 15, 0, 0, 16, 0, 0, 17, 0, 0, 18, 0, 0, 19, 0, 0, 20, 0, 0, 21, 0, 0, 22, 0, 0, 23, 0, 0, 24, 0, 0, 25, 0, 0, 26, 0, 0, 27, 0, 0, 28, 0, 0, 29, 0, 0, 30, 0, 0, 31, 0, 0, 65536, 0, 0, 65567, 0, 0, 131072, 0, 0, 131103, 0, 0, 196608, 0, 0, 196639, 0, 0, 262144, 0, 0, 262175, 0, 0, 327680, 0, 0, 327711, 0, 0, 393216, 0, 0, 393247, 0, 0, 458752, 0, 0, 458783, 0, 0, 524288, 0, 0, 589824, 0, 0, 655360, 0, 0, 720896, 0, 0, 786432, 0, 0, 851988, 0, 0, 851989, 0, 0, 851990, 0, 0, 851991, 0, 0, 851992, 0, 0, 851993, 0, 0, 851994, 0, 0, 851995, 0, 0, 851996, 0, 0, 851997, 0, 0, 851998, 0, 0, 851999, 0, 0, 917523, 0, 0, 917524, 0, 0, 917525, 0, 0, 917526, 0, 0, 917527, 0, 0, 917528, 0, 0, 917529, 0, 0, 917530, 0, 0, 917535, 0, 0, 983058, 0, 0, 983059, 0, 0, 983060, 0, 0, 983061, 0, 0, 983062, 0, 0, 983063, 0, 0, 983064, 0, 0, 983065, 0, 0, 983066, 0, 0, 983071, 0, 0, 1048593, 0, 0, 1048594, 0, 0, 1048595, 0, 0, 1048596, 0, 0, 1048597, 0, 0, 1048598, 0, 0, 1048599, 0, 0, 1048600, 0, 0, 1048601, 0, 0, 1048602, 0, 0, 1048607, 0, 0, 1114128, 0, 0, 1114129, 0, 0, 1114130, 0, 0, 1114131, 0, 0, 1114132, 0, 0, 1114133, 0, 0, 1114134, 0, 0, 1114135, 0, 0, 1114136, 0, 0, 1114137, 0, 0, 1114138, 0, 0, 1114143, 0, 0, 1179648, 0, 0, 1179649, 0, 0, 1179650, 0, 0, 1179651, 0, 0, 1179652, 0, 0, 1179653, 0, 0, 1179654, 0, 0, 1179655, 0, 0, 1179656, 0, 0, 1179657, 0, 0, 1179658, 0, 0, 1179659, 0, 0, 1179660, 0, 0, 1179661, 0, 0, 1179662, 0, 0, 1179663, 0, 0, 1179664, 0, 0, 1179665, 0, 0, 1179666, 0, 0, 1179667, 0, 0, 1179668, 0, 0, 1179669, 0, 0, 1179670, 0, 0, 1179671, 0, 0, 1179672, 0, 0, 1179673, 0, 0, 1179674, 0, 0, 1179675, 0, 0, 1179676, 0, 0, 1179677, 0, 0, 1179678, 0, 0, 1179679, 0, 0 )
+
+[node name="Player" parent="." instance=ExtResource( 3 )]
+position = Vector2( 54.655, 554.511 )
+
+[node name="EnemyClass" parent="." instance=ExtResource( 2 )]
+position = Vector2( 933.662, 557.703 )
+
+[node name="EnemyClass2" parent="." instance=ExtResource( 2 )]
+position = Vector2( 732.075, 396.433 )
+
+[node name="RoomChanger" parent="." groups=[
+"persistent",
+"room_changer",
+] instance=ExtResource( 6 )]
+position = Vector2( 15, 500 )
+goal_room = "res://TestLevel.tscn"
+
+[node name="PlayerSpawnPosition" parent="RoomChanger" index="1"]
+position = Vector2( 47.997, 59.4762 )
+
+[node name="RoomChanger2" parent="." groups=[
+"persistent",
+"room_changer",
+] instance=ExtResource( 6 )]
+position = Vector2( 1009.02, 335.895 )
+goal_room = "res://TestLevel3.tscn"
+
+[node name="Sprite" parent="RoomChanger2/CollisionShape2D" index="0"]
+position = Vector2( 0, 0 )
+
+[node name="PlayerSpawnPosition" parent="RoomChanger2" index="1"]
+position = Vector2( -50.3969, 52.9167 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="SceneTransitionRect" parent="CanvasLayer" instance=ExtResource( 4 )]
+
+[node name="MandelForestBee" parent="." instance=ExtResource( 7 )]
+material = SubResource( 1 )
+position = Vector2( 376.075, 401.546 )
+
+[node name="MandelForestBee2" parent="." instance=ExtResource( 7 )]
+material = SubResource( 1 )
+position = Vector2( 518.414, 287.675 )
+
+[node name="MandelForestBee3" parent="." instance=ExtResource( 7 )]
+material = SubResource( 1 )
+position = Vector2( 319.139, 313.146 )
+
+[node name="MandelForestBee4" parent="." instance=ExtResource( 7 )]
+material = SubResource( 1 )
+position = Vector2( 723.683, 148.332 )
+
+[node name="MandelForestBee5" parent="." instance=ExtResource( 7 )]
+material = SubResource( 1 )
+position = Vector2( 485.452, 149.831 )
+
+[node name="MandelForestBee6" parent="." instance=ExtResource( 7 )]
+material = SubResource( 1 )
+position = Vector2( 716.191, 257.709 )
+
+[node name="MandelForestBee7" parent="." instance=ExtResource( 7 )]
+material = SubResource( 1 )
+position = Vector2( 617.303, 187.288 )
+
+[node name="MandelForestBee8" parent="." instance=ExtResource( 7 )]
+material = SubResource( 1 )
+position = Vector2( 412.035, 459.98 )
+
+[node name="MandelForestBee9" parent="." instance=ExtResource( 7 )]
+material = SubResource( 1 )
+position = Vector2( 158.821, 377.573 )
+
+[node name="MandelForestBee10" parent="." instance=ExtResource( 7 )]
+material = SubResource( 1 )
+position = Vector2( 197.777, 265.2 )
+
+[editable path="RoomChanger"]
+
+[editable path="RoomChanger2"]

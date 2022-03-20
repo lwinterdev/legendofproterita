@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/trancelike.wav-c3a77a188aed0f006a769bceefe6d109.sample"
+
+[deps]
+
+source_file="res://trancelike.wav"
+dest_files=[ "res://.import/trancelike.wav-c3a77a188aed0f006a769bceefe6d109.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

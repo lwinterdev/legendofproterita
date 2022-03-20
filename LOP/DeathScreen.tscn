@@ -1,0 +1,71 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://theme_test.tres" type="Theme" id=1]
+[ext_resource path="res://DeathScreen.gd" type="Script" id=4]
+[ext_resource path="res://DeathScreenMainMenuButton.gd" type="Script" id=5]
+
+[node name="DeathScreen" type="CanvasLayer"]
+pause_mode = 2
+script = ExtResource( 4 )
+
+[node name="Control" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.670588, 0.403922, 0.403922, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="Control/ColorRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/ColorRect/CenterContainer"]
+margin_left = 181.0
+margin_top = 123.0
+margin_right = 331.0
+margin_bottom = 177.0
+rect_min_size = Vector2( 150, 0 )
+
+[node name="DeathScreenMainMenuButton" type="Button" parent="Control/ColorRect/CenterContainer/VBoxContainer"]
+margin_right = 150.0
+margin_bottom = 25.0
+script = ExtResource( 5 )
+
+[node name="Label" type="Label" parent="Control/ColorRect/CenterContainer/VBoxContainer/DeathScreenMainMenuButton"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "Main Menu"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DeathScreenLoadLastSaveButton" type="Button" parent="Control/ColorRect/CenterContainer/VBoxContainer"]
+margin_top = 29.0
+margin_right = 150.0
+margin_bottom = 54.0
+
+[node name="Label" type="Label" parent="Control/ColorRect/CenterContainer/VBoxContainer/DeathScreenLoadLastSaveButton"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "load last save"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="Control/ColorRect/CenterContainer/VBoxContainer/DeathScreenMainMenuButton" to="." method="_on_DeathScreenMainMenuButton_pressed"]
+[connection signal="pressed" from="Control/ColorRect/CenterContainer/VBoxContainer/DeathScreenLoadLastSaveButton" to="." method="_on_DeathScreenLoadLastSaveButton_pressed"]

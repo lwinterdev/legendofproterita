@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/celeste_inspired_soundtrack.wav-a75e74b2e87314a683dbd2f30f178c4b.sample"
+
+[deps]
+
+source_file="res://Sounds/BackgroundMusic/celeste_inspired_soundtrack.wav"
+dest_files=[ "res://.import/celeste_inspired_soundtrack.wav-a75e74b2e87314a683dbd2f30f178c4b.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
